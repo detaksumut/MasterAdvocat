@@ -85,6 +85,10 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
         setTemplateType('gugatan');
       } else if (lowerName.includes('jawaban')) {
         setTemplateType('jawaban');
+      } else if (lowerName.includes('opinion') || lowerName.includes('opini')) {
+        setTemplateType('legal-opinion');
+      } else if (lowerName.includes('notulen') || lowerName.includes('notula')) {
+        setTemplateType('notulen-rapat');
       }
       
       // Scroll to customizer
@@ -164,6 +168,8 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                 <option value="somasi">Surat Teguran (Somasi)</option>
                 <option value="gugatan">Gugatan Wanprestasi</option>
                 <option value="jawaban">Jawaban Tergugat</option>
+                <option value="legal-opinion">Legal Opinion (Opini Hukum)</option>
+                <option value="notulen-rapat">Notulen Rapat</option>
               </select>
             </div>
 
@@ -604,6 +610,116 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                       <p>Kuasa Hukum Tergugat,</p>
                       <div className="signature-space"></div>
                       <p><u>{advocateName || '[Nama Advokat]'}</u></p>
+                    </div>
+                  </div>
+                )}
+
+                {templateType === 'legal-opinion' && (
+                  <div className="document-body">
+                    <div className="meta-info">
+                      <table>
+                        <tbody>
+                          <tr><td>Nomor</td><td>:</td><td>12/LO/{(lawFirm || 'ADV').substring(0,3).toUpperCase()}/VI/2026</td></tr>
+                          <tr><td>Hal</td><td>:</td><td><strong>PENDAPAT HUKUM (LEGAL OPINION)</strong></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <p className="date-right">{datePlace || '[Kota, Tanggal Dokumen]'}</p>
+
+                    <div className="recipient-block">
+                      <p>Kepada Yth.</p>
+                      <p><strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong></p>
+                      <p>Di {clientAddress || '[Alamat Klien]'}</p>
+                    </div>
+
+                    <p>Dengan hormat,</p>
+                    <p className="text-justify indent">
+                      Sehubungan dengan adanya dugaan sengketa hukum dengan <strong>{opponentName || '[Nama Pihak Lawan]'}</strong> terkait perkara <strong>{demandAction || '[Tindakan / Masalah Utama]'}</strong> dengan nilai sengketa sekitar <strong>Rp{caseValue || '[Nilai Kerugian]'}</strong>, berikut kami sampaikan telaah dan pendapat hukum (*legal opinion*) demi kepentingan hukum Klien:
+                    </p>
+
+                    <h4 className="sub-header-center">I. DUDUK PERKARA</h4>
+                    <p className="text-justify indent">
+                      Klien kami memiliki hubungan hukum kerja sama dengan {opponentName || '[Pihak Lawan]'} yang terikat dalam kesepakatan tertulis. Namun, {opponentName || '[Pihak Lawan]'} diduga telah melakukan tindakan wanprestasi/pelanggaran hukum yang merugikan kepentingan Klien.
+                    </p>
+
+                    <h4 className="sub-header-center">II. ANALISIS HUKUM</h4>
+                    <p className="text-justify indent">
+                      Berdasarkan hukum positif Indonesia, tindakan yang dilakukan oleh {opponentName || '[Pihak Lawan]'} memenuhi unsur wanprestasi sebagaimana diatur dalam Pasal 1243 Kitab Undang-Undang Hukum Perdata (KUHPer). Klien berhak menuntut pemenuhan prestasi disertai ganti rugi atas kerugian yang diderita.
+                    </p>
+
+                    <h4 className="sub-header-center">III. REKOMENDASI HUKUM</h4>
+                    <ol className="doc-list">
+                      <li className="text-justify">
+                        Melakukan tindakan preventif berupa pengiriman surat teguran hukum (Somasi) secara resmi untuk memberikan kesempatan penyelesaian damai.
+                      </li>
+                      <li className="text-justify">
+                        Apabila somasi diabaikan, Klien dapat mengajukan Gugatan Perdata Wanprestasi ke Pengadilan Negeri yang berwenang.
+                      </li>
+                    </ol>
+
+                    <div className="signature-section-single">
+                      <p>Hormat kami,</p>
+                      <p>Konsultan Hukum,</p>
+                      <p><strong>{lawFirm || '[Nama Kantor Hukum]'}</strong></p>
+                      <div className="signature-space"></div>
+                      <p><u>{advocateName || '[Nama Advokat]'}</u></p>
+                    </div>
+                  </div>
+                )}
+
+                {templateType === 'notulen-rapat' && (
+                  <div className="document-body">
+                    <h3 className="doc-title">NOTULEN RAPAT KONSULTASI HUKUM</h3>
+                    
+                    <div className="identitas-blok">
+                      <table>
+                        <tbody>
+                          <tr><td>Hari / Tanggal</td><td>:</td><td>{datePlace || '[Kota, Tanggal Dokumen]'}</td></tr>
+                          <tr><td>Tempat Rapat</td><td>:</td><td>Kantor Hukum {lawFirm || '[Nama Kantor Hukum]'}</td></tr>
+                          <tr><td>Agenda Rapat</td><td>:</td><td>Pembahasan sengketa hukum dengan {opponentName || '[Nama Pihak Lawan]'}</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <p className="indent">Rapat konsultasi hukum ini dihadiri oleh para pihak sebagai berikut:</p>
+                    <ol className="doc-list" style={{ marginLeft: '20px' }}>
+                      <li><strong>{advocateName || '[Nama Advokat]'}</strong> (Kuasa Hukum / Advokat)</li>
+                      <li><strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong> (Pemberi Kuasa / Klien)</li>
+                    </ol>
+
+                    <h4 className="sub-header">POKOK-POKOK PEMBAHASAN RAPAT:</h4>
+                    <ol className="doc-list">
+                      <li className="text-justify">
+                        Penjelasan latar belakang masalah kronologi persengketaan dengan {opponentName || '[Nama Pihak Lawan]'} yang berlokasi di {opponentAddress || '[Alamat Pihak Lawan]'}.
+                      </li>
+                      <li className="text-justify">
+                        Penghitungan total nilai kerugian finansial sengketa yang mencapai Rp{caseValue || '[Nilai Kerugian]'} dan penyusunan bukti pendukung.
+                      </li>
+                      <li className="text-justify">
+                        Penyusunan strategi hukum perihal tindakan {demandAction || '[Tindakan / Masalah Utama]'} guna memaksa pihak lawan mematuhi perjanjian.
+                      </li>
+                    </ol>
+
+                    <h4 className="sub-header">KESINDAKAN & KESEPAKATAN RAPAT:</h4>
+                    <p className="text-justify indent">
+                      Para pihak sepakat untuk memulai langkah hukum somasi pertama. Apabila dalam tenggat waktu somasi tidak terdapat tanggapan yang iktikad baik, maka Kuasa Hukum akan segera mendaftarkan gugatan ke pengadilan.
+                    </p>
+
+                    <div className="signature-section">
+                      <p className="date-line">Notulen ini dibuat dan disetujui bersama:</p>
+                      <div className="signature-grid">
+                        <div className="signature-box">
+                          <p>Kuasa Hukum,</p>
+                          <div className="signature-space"></div>
+                          <p><u>{advocateName || '[Nama Advokat]'}</u></p>
+                        </div>
+                        <div className="signature-box">
+                          <p>Pemberi Kuasa / Klien,</p>
+                          <div className="signature-space"></div>
+                          <p><u>{clientName || '[Nama Klien]'}</u></p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}

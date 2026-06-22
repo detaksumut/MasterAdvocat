@@ -3,9 +3,10 @@ import { BookOpen, FileSpreadsheet, Scale, UserCheck, Handshake, Landmark, Arrow
 
 interface BonusSectionProps {
   onPromoClick: () => void;
+  onSelectDocument?: (docName: string) => void;
 }
 
-export const BonusSection: React.FC<BonusSectionProps> = ({ onPromoClick }) => {
+export const BonusSection: React.FC<BonusSectionProps> = ({ onPromoClick, onSelectDocument }) => {
   return (
     <section id="bonus-section" className="bonus-section">
       {/* Glow Effect */}
@@ -36,6 +37,14 @@ export const BonusSection: React.FC<BonusSectionProps> = ({ onPromoClick }) => {
               <span className="badge-bonus">TEMPLATE</span>
               <h3>Legal Opinion</h3>
               <p>Format penyusunan opini hukum formal untuk menjawab kebutuhan kajian hukum klien Anda secara profesional dan sistematis.</p>
+              {onSelectDocument && (
+                <button 
+                  onClick={() => onSelectDocument('Legal Opinion')} 
+                  className="btn-text-action-bonus"
+                >
+                  Edit Demo <ArrowRight size={14} />
+                </button>
+              )}
             </div>
           </div>
 
@@ -48,6 +57,14 @@ export const BonusSection: React.FC<BonusSectionProps> = ({ onPromoClick }) => {
               <span className="badge-bonus">TEMPLATE</span>
               <h3>Notulen Rapat</h3>
               <p>Template pencatatan hasil diskusi hukum, rapat dengan klien, dan review perkara agar terdokumentasi rapi dan berkekuatan pembuktian internal.</p>
+              {onSelectDocument && (
+                <button 
+                  onClick={() => onSelectDocument('Notulen Rapat')} 
+                  className="btn-text-action-bonus"
+                >
+                  Edit Demo <ArrowRight size={14} />
+                </button>
+              )}
             </div>
           </div>
 
@@ -60,6 +77,12 @@ export const BonusSection: React.FC<BonusSectionProps> = ({ onPromoClick }) => {
               <span className="badge-bonus">96 E-BOOKS</span>
               <h3>96 Ebook Hukum</h3>
               <p>Rangkaian buku elektronik referensi hukum perdata, pidana, tata usaha negara, agraria, kontrak dagang, dan kompilasi regulasi terkini.</p>
+              <button 
+                onClick={onPromoClick} 
+                className="btn-text-action-bonus"
+              >
+                Dapatkan Bonus <ArrowRight size={14} />
+              </button>
             </div>
           </div>
         </div>
@@ -257,6 +280,35 @@ export const BonusSection: React.FC<BonusSectionProps> = ({ onPromoClick }) => {
           font-size: 0.9rem;
           color: var(--text-secondary);
           line-height: 1.5;
+        }
+
+        .btn-text-action-bonus {
+          background: transparent;
+          border: none;
+          color: var(--secondary);
+          font-size: 0.875rem;
+          font-weight: 600;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          cursor: pointer;
+          padding: 0;
+          transition: var(--transition-smooth);
+          width: fit-content;
+          margin-top: 12px;
+          text-align: left;
+        }
+
+        .btn-text-action-bonus:hover {
+          color: var(--secondary-hover);
+        }
+
+        .btn-text-action-bonus:hover svg {
+          transform: translateX(4px);
+        }
+
+        .btn-text-action-bonus svg {
+          transition: transform 0.2s ease;
         }
 
         /* Promo Box Call-To-Action */

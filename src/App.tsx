@@ -59,7 +59,10 @@ function App() {
         />
 
         {/* Bonus & SOP List */}
-        <BonusSection onPromoClick={() => scrollToSection('promo-cta')} />
+        <BonusSection 
+          onPromoClick={() => scrollToSection('promo-cta')} 
+          onSelectDocument={handleSelectDoc}
+        />
 
         {/* Checkout Form & CTA */}
         <PromoCTA />
