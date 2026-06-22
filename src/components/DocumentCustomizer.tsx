@@ -12,16 +12,16 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
   
   // Form States
   const [letterheadStyle, setLetterheadStyle] = useState<string>('image-banner');
-  const [advocateName, setAdvocateName] = useState<string>('Ahmad Fauzi, S.H., M.H.');
-  const [lawFirm, setLawFirm] = useState<string>('Fauzi & Partners Law Office');
-  const [advocateAddress, setAdvocateAddress] = useState<string>('Sudirman Central Business District (SCBD) Lot 28, Jakarta Selatan');
-  const [clientName, setClientName] = useState<string>('Budi Santoso');
-  const [clientAddress, setClientAddress] = useState<string>('Jl. Kemang Raya No. 12, Jakarta Selatan');
-  const [opponentName, setOpponentName] = useState<string>('PT. Maju Mundur Sejahtera');
-  const [opponentAddress, setOpponentAddress] = useState<string>('Kawasan Industri Jababeka Blok C-15, Bekasi');
-  const [datePlace, setDatePlace] = useState<string>('Jakarta, 22 Juni 2026');
-  const [caseValue, setCaseValue] = useState<string>('750.000.000');
-  const [demandAction, setDemandAction] = useState<string>('melunasi sisa pembayaran proyek pembangunan ruko');
+  const [advocateName, setAdvocateName] = useState<string>('');
+  const [lawFirm, setLawFirm] = useState<string>('');
+  const [advocateAddress, setAdvocateAddress] = useState<string>('');
+  const [clientName, setClientName] = useState<string>('');
+  const [clientAddress, setClientAddress] = useState<string>('');
+  const [opponentName, setOpponentName] = useState<string>('');
+  const [opponentAddress, setOpponentAddress] = useState<string>('');
+  const [datePlace, setDatePlace] = useState<string>('');
+  const [caseValue, setCaseValue] = useState<string>('');
+  const [demandAction, setDemandAction] = useState<string>('');
 
   // DRM Licensing States
   const [isPremium, setIsPremium] = useState<boolean>(() => {
@@ -127,16 +127,16 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
     setCustomLogo(null);
     setCustomHeader(null);
     setCustomFooter(null);
-    setAdvocateName('Ahmad Fauzi, S.H., M.H.');
-    setLawFirm('Fauzi & Partners Law Office');
-    setAdvocateAddress('Sudirman Central Business District (SCBD) Lot 28, Jakarta Selatan');
-    setClientName('Budi Santoso');
-    setClientAddress('Jl. Kemang Raya No. 12, Jakarta Selatan');
-    setOpponentName('PT. Maju Mundur Sejahtera');
-    setOpponentAddress('Kawasan Industri Jababeka Blok C-15, Bekasi');
-    setCaseValue('750.000.000');
-    setDemandAction('melunasi sisa pembayaran proyek pembangunan ruko');
-    setDatePlace('Jakarta, 22 Juni 2026');
+    setAdvocateName('');
+    setLawFirm('');
+    setAdvocateAddress('');
+    setClientName('');
+    setClientAddress('');
+    setOpponentName('');
+    setOpponentAddress('');
+    setCaseValue('');
+    setDemandAction('');
+    setDatePlace('');
   };
 
   return (
@@ -195,6 +195,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   value={advocateName} 
                   onChange={(e) => setAdvocateName(e.target.value)} 
                   className="input-text"
+                  placeholder="contoh: Ahmad Fauzi, S.H., M.H."
                 />
               </div>
             </div>
@@ -207,6 +208,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   value={lawFirm} 
                   onChange={(e) => setLawFirm(e.target.value)} 
                   className="input-text"
+                  placeholder="contoh: Fauzi & Partners Law Office"
                 />
               </div>
             </div>
@@ -218,6 +220,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                 onChange={(e) => setAdvocateAddress(e.target.value)} 
                 className="input-textarea"
                 rows={2}
+                placeholder="contoh: Sudirman Central Business District (SCBD) Lot 28, Jakarta Selatan"
               />
             </div>
 
@@ -321,6 +324,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   value={clientName} 
                   onChange={(e) => setClientName(e.target.value)} 
                   className="input-text"
+                  placeholder="contoh: Budi Santoso"
                 />
               </div>
               <div className="form-group">
@@ -330,6 +334,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   value={opponentName} 
                   onChange={(e) => setOpponentName(e.target.value)} 
                   className="input-text"
+                  placeholder="contoh: PT. Maju Mundur Sejahtera"
                 />
               </div>
             </div>
@@ -342,6 +347,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   value={clientAddress} 
                   onChange={(e) => setClientAddress(e.target.value)} 
                   className="input-text"
+                  placeholder="contoh: Jl. Kemang Raya No. 12, Jakarta Selatan"
                 />
               </div>
             </div>
@@ -354,6 +360,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   value={opponentAddress} 
                   onChange={(e) => setOpponentAddress(e.target.value)} 
                   className="input-text"
+                  placeholder="contoh: Kawasan Industri Jababeka Blok C-15, Bekasi"
                 />
               </div>
             </div>
@@ -370,6 +377,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                         value={caseValue} 
                         onChange={(e) => setCaseValue(e.target.value)} 
                         className="input-text"
+                        placeholder="contoh: 750.000.000"
                       />
                     </div>
                   </div>
@@ -381,7 +389,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     value={demandAction} 
                     onChange={(e) => setDemandAction(e.target.value)} 
                     className="input-text"
-                    placeholder="misal: melunasi sisa kewajiban..."
+                    placeholder="contoh: melunasi sisa pembayaran proyek pembangunan ruko"
                   />
                 </div>
               </>
@@ -395,6 +403,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   value={datePlace} 
                   onChange={(e) => setDatePlace(e.target.value)} 
                   className="input-text"
+                  placeholder="contoh: Jakarta, 22 Juni 2026"
                 />
               </div>
             </div>
@@ -464,16 +473,16 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     <div className="letterhead-with-logo">
                       <img src={customLogo || "/logo.png"} className="firm-logo-img" alt="Logo Law Firm" />
                       <div className="firm-details">
-                        <h2 className="firm-name">{lawFirm.toUpperCase()}</h2>
-                        <p className="firm-address">{advocateAddress}</p>
+                        <h2 className="firm-name">{(lawFirm || '[Nama Kantor Hukum / Law Office]').toUpperCase()}</h2>
+                        <p className="firm-address">{advocateAddress || '[Alamat Kantor Hukum / Law Office]'}</p>
                       </div>
                     </div>
                     <div className="double-line"></div>
                   </div>
                 ) : (
                   <div className="letterhead">
-                    <h2 className="firm-name">{lawFirm.toUpperCase()}</h2>
-                    <p className="firm-address">{advocateAddress}</p>
+                    <h2 className="firm-name">{(lawFirm || '[Nama Kantor Hukum / Law Office]').toUpperCase()}</h2>
+                    <p className="firm-address">{advocateAddress || '[Alamat Kantor Hukum / Law Office]'}</p>
                     <div className="double-line"></div>
                   </div>
                 )}
@@ -487,8 +496,8 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     <div className="identitas-blok">
                       <table>
                         <tbody>
-                          <tr><td>Nama</td><td>:</td><td><strong>{clientName}</strong></td></tr>
-                          <tr><td>Alamat</td><td>:</td><td>{clientAddress}</td></tr>
+                          <tr><td>Nama</td><td>:</td><td><strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong></td></tr>
+                          <tr><td>Alamat</td><td>:</td><td>{clientAddress || '[Alamat Klien / Pemberi Kuasa]'}</td></tr>
                           <tr><td>Pekerjaan</td><td>:</td><td>Swasta</td></tr>
                         </tbody>
                       </table>
@@ -501,9 +510,9 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     <div className="identitas-blok">
                       <table>
                         <tbody>
-                          <tr><td>Nama</td><td>:</td><td><strong>{advocateName}</strong></td></tr>
-                          <tr><td>Profesi</td><td>:</td><td>Advokat / Konsultan Hukum pada <strong>{lawFirm}</strong></td></tr>
-                          <tr><td>Alamat</td><td>:</td><td>{advocateAddress}</td></tr>
+                          <tr><td>Nama</td><td>:</td><td><strong>{advocateName || '[Nama Advokat / Penerima Kuasa]'}</strong></td></tr>
+                          <tr><td>Profesi</td><td>:</td><td>Advokat / Konsultan Hukum pada <strong>{lawFirm || '[Nama Kantor Hukum]'}</strong></td></tr>
+                          <tr><td>Alamat</td><td>:</td><td>{advocateAddress || '[Alamat Kantor Hukum]'}</td></tr>
                         </tbody>
                       </table>
                     </div>
@@ -512,7 +521,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     
                     <h4 className="sub-header">-------------------------------- KHUSUS --------------------------------</h4>
                     <p className="indent text-justify">
-                      Untuk dan atas nama Pemberi Kuasa mewakili, mendampingi, dan membela hak-hak hukum Pemberi Kuasa guna mengajukan gugatan, menghadiri persidangan, melakukan pembelaan hukum, serta menghadapi sengketa hukum terhadap <strong>{opponentName}</strong> yang beralamat di {opponentAddress}.
+                      Untuk dan atas nama Pemberi Kuasa mewakili, mendampingi, dan membela hak-hak hukum Pemberi Kuasa guna mengajukan gugatan, menghadiri persidangan, melakukan pembelaan hukum, serta menghadapi sengketa hukum terhadap <strong>{opponentName || '[Nama Pihak Lawan]'}</strong> yang beralamat di {opponentAddress || '[Alamat Pihak Lawan]'}.
                     </p>
 
                     <p className="indent text-justify">
@@ -520,19 +529,19 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     </p>
 
                     <div className="signature-section">
-                      <p className="date-line">{datePlace}</p>
+                      <p className="date-line">{datePlace || '[Kota, Tanggal Dokumen]'}</p>
                       <div className="signature-grid">
                         <div className="signature-box">
                           <p>Penerima Kuasa,</p>
                           <div className="signature-space"></div>
-                          <p><u>{advocateName}</u></p>
+                          <p><u>{advocateName || '[Nama Advokat]'}</u></p>
                         </div>
                         <div className="signature-box">
                           <p>Pemberi Kuasa,</p>
                           <div className="signature-space">
                             <span className="materai-badge">Materai 10.000</span>
                           </div>
-                          <p><u>{clientName}</u></p>
+                          <p><u>{clientName || '[Nama Klien]'}</u></p>
                         </div>
                       </div>
                     </div>
@@ -544,23 +553,23 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     <div className="meta-info">
                       <table>
                         <tbody>
-                          <tr><td>Nomor</td><td>:</td><td>102/SOMS/{lawFirm.substring(0,3).toUpperCase()}/VI/2026</td></tr>
+                          <tr><td>Nomor</td><td>:</td><td>102/SOMS/{(lawFirm || 'ADV').substring(0,3).toUpperCase()}/VI/2026</td></tr>
                           <tr><td>Hal</td><td>:</td><td><strong>TEGURAN HUKUM (SOMASI) PERTAMA</strong></td></tr>
                         </tbody>
                       </table>
                     </div>
 
-                    <p className="date-right">{datePlace}</p>
+                    <p className="date-right">{datePlace || '[Kota, Tanggal Dokumen]'}</p>
 
                     <div className="recipient-block">
                       <p>Kepada Yth.</p>
-                      <p><strong>Pimpinan / Direksi {opponentName}</strong></p>
-                      <p>Di {opponentAddress}</p>
+                      <p><strong>Pimpinan / Direksi {opponentName || '[Nama Pihak Lawan]'}</strong></p>
+                      <p>Di {opponentAddress || '[Alamat Pihak Lawan]'}</p>
                     </div>
 
                     <p>Dengan hormat,</p>
                     <p className="text-justify indent">
-                      Untuk dan atas nama klien kami, <strong>{clientName}</strong>, berdasarkan Surat Kuasa Khusus tertanggal {datePlace}, dengan ini menyampaikan Teguran Hukum (Somasi) kepada Saudara/Perusahaan Saudara atas permasalahan hukum sebagai berikut:
+                      Untuk dan atas nama klien kami, <strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong>, berdasarkan Surat Kuasa Khusus tertanggal {datePlace || '[Kota, Tanggal Dokumen]'}, dengan ini menyampaikan Teguran Hukum (Somasi) kepada Saudara/Perusahaan Saudara atas permasalahan hukum sebagai berikut:
                     </p>
 
                     <ol className="doc-list">
@@ -568,7 +577,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                         Bahwa Klien kami dan Perusahaan Saudara terikat perjanjian kerja sama proyek pembangunan ruko, di mana Saudara berkewajiban melakukan pembayaran secara berkala sesuai kemajuan proyek.
                       </li>
                       <li className="text-justify">
-                        Bahwa sampai dengan jatuh tempo yang telah ditentukan, Saudara ternyata terbukti belum melaksanakan kewajiban pembayaran sisa proyek sebesar <strong>Rp{caseValue},- (Bisa dikonfigurasi pada form)</strong>.
+                        Bahwa sampai dengan jatuh tempo yang telah ditentukan, Saudara ternyata terbukti belum melaksanakan kewajiban pembayaran sisa proyek sebesar <strong>Rp{caseValue || '[Nilai Kerugian]'},- (Bisa dikonfigurasi pada form)</strong>.
                       </li>
                       <li className="text-justify">
                         Bahwa tindakan Saudara tersebut merupakan bentuk perbuatan Cidera Janji (Wanprestasi) yang menimbulkan kerugian finansial yang nyata bagi Klien kami.
@@ -576,7 +585,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     </ol>
 
                     <p className="text-justify indent">
-                      Oleh karena itu, melalui Somasi ini, kami memberikan kesempatan terakhir kepada Saudara untuk segera <strong>{demandAction}</strong> dalam waktu paling lambat 7 (tujuh) hari kalender sejak diterimanya surat teguran ini.
+                      Oleh karena itu, melalui Somasi ini, kami memberikan kesempatan terakhir kepada Saudara untuk segera <strong>{demandAction || '[Tuntutan Utama / Tindakan yang Harus Dilakukan]'}</strong> dalam waktu paling lambat 7 (tujuh) hari kalender sejak diterimanya surat teguran ini.
                     </p>
 
                     <p className="text-justify indent">
@@ -585,17 +594,17 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
 
                     <div className="signature-section-single">
                       <p>Hormat kami,</p>
-                      <p>Kuasa Hukum <strong>{clientName}</strong>,</p>
-                      <p><strong>{lawFirm}</strong></p>
+                      <p>Kuasa Hukum <strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong>,</p>
+                      <p><strong>{lawFirm || '[Nama Kantor Hukum]'}</strong></p>
                       <div className="signature-space"></div>
-                      <p><u>{advocateName}</u></p>
+                      <p><u>{advocateName || '[Nama Advokat]'}</u></p>
                     </div>
                   </div>
                 )}
 
                 {templateType === 'gugatan' && (
                   <div className="document-body">
-                    <p className="date-right">{datePlace}</p>
+                    <p className="date-right">{datePlace || '[Kota, Tanggal Dokumen]'}</p>
                     <div className="recipient-block">
                       <p>Kepada Yth.</p>
                       <p><strong>Ketua Pengadilan Negeri Jakarta Selatan</strong></p>
@@ -606,22 +615,22 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
 
                     <p>Dengan hormat,</p>
                     <p className="indent text-justify">
-                      Yang bertanda tangan di bawah ini, <strong>{advocateName}</strong>, Advokat pada Kantor Hukum <strong>{lawFirm}</strong> bertindak untuk dan atas nama <strong>{clientName}</strong> berdasarkan Surat Kuasa Khusus, selanjutnya disebut sebagai ------------------------------------------------ <strong>PENGGUGAT</strong>;
+                      Yang bertanda tangan di bawah ini, <strong>{advocateName || '[Nama Advokat]'}</strong>, Advokat pada Kantor Hukum <strong>{lawFirm || '[Nama Kantor Hukum]'}</strong> bertindak untuk dan atas nama <strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong> berdasarkan Surat Kuasa Khusus, selanjutnya disebut sebagai ------------------------------------------------ <strong>PENGGUGAT</strong>;
                     </p>
 
                     <p className="indent">Dengan ini mengajukan gugatan terhadap:</p>
                     <p className="indent text-justify">
-                      <strong>{opponentName}</strong>, berkedudukan hukum di {opponentAddress}, selanjutnya disebut sebagai --------------------------------------------------------------------- <strong>TERGUGAT</strong>;
+                      <strong>{opponentName || '[Nama Pihak Lawan]'}</strong>, berkedudukan hukum di {opponentAddress || '[Alamat Pihak Lawan]'}, selanjutnya disebut sebagai --------------------------------------------------------------------- <strong>TERGUGAT</strong>;
                     </p>
 
                     <h4 className="sub-header-center">DUDUK PERKARA (FUNDAMENTUM PETENDI)</h4>
                     
                     <ol className="doc-list">
                       <li className="text-justify">
-                        Bahwa antara Penggugat dan Tergugat terikat kerja sama investasi/konstruksi senilai <strong>Rp{caseValue},-</strong>.
+                        Bahwa antara Penggugat dan Tergugat terikat kerja sama investasi/konstruksi senilai <strong>Rp{caseValue || '[Nilai Kerugian]'},-</strong>.
                       </li>
                       <li className="text-justify">
-                        Bahwa Tergugat tidak memenuhi prestasinya untuk <strong>{demandAction}</strong> yang telah disepakati bersama.
+                        Bahwa Tergugat tidak memenuhi prestasinya untuk <strong>{demandAction || '[Tuntutan Utama / Tindakan yang Harus Dilakukan]'}</strong> yang telah disepakati bersama.
                       </li>
                     </ol>
 
@@ -630,21 +639,21 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                     <ol className="doc-list">
                       <li>Mengabulkan Gugatan Penggugat untuk seluruhnya.</li>
                       <li>Menyatakan Tergugat telah melakukan Perbuatan Wanprestasi.</li>
-                      <li>Menghukum Tergugat untuk membayar ganti rugi sebesar Rp{caseValue},-.</li>
+                      <li>Menghukum Tergugat untuk membayar ganti rugi sebesar Rp{caseValue || '[Nilai Kerugian]'},-.</li>
                     </ol>
 
                     <div className="signature-section-single">
                       <p>Hormat Kami,</p>
                       <p>Kuasa Hukum Penggugat,</p>
                       <div className="signature-space"></div>
-                      <p><u>{advocateName}</u></p>
+                      <p><u>{advocateName || '[Nama Advokat]'}</u></p>
                     </div>
                   </div>
                 )}
 
                 {templateType === 'jawaban' && (
                   <div className="document-body">
-                    <p className="date-right">{datePlace}</p>
+                    <p className="date-right">{datePlace || '[Kota, Tanggal Dokumen]'}</p>
                     <div className="recipient-block">
                       <p>Kepada Yth.</p>
                       <p><strong>Majelis Hakim Pemeriksa Perkara Reg No. 192/Pdt.G/2026/PN.Jkt.Sel</strong></p>
@@ -653,9 +662,9 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
 
                     <p className="hal-block">Hal: <strong>JAWABAN TERGUGAT & EKSEPSI</strong></p>
 
-                    <p>Dengan hormat,</p>
+                    <p>With hormat,</p>
                     <p className="indent text-justify">
-                      Untuk dan atas nama Tergugat, <strong>{opponentName}</strong>, berdasarkan Surat Kuasa Khusus dari kantor hukum <strong>{lawFirm}</strong>, dengan ini menyampaikan Jawaban Tergugat atas Gugatan yang diajukan oleh Penggugat, <strong>{clientName}</strong>:
+                      Untuk dan atas nama Tergugat, <strong>{opponentName || '[Nama Pihak Lawan]'}</strong>, berdasarkan Surat Kuasa Khusus dari kantor hukum <strong>{lawFirm || '[Nama Kantor Hukum]'}</strong>, dengan ini menyampaikan Jawaban Tergugat atas Gugatan yang diajukan oleh Penggugat, <strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong>:
                     </p>
 
                     <h4 className="sub-header-center">DALAM EKSEPSI (KEBERATAN)</h4>
@@ -676,7 +685,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                       <p>Hormat Kami,</p>
                       <p>Kuasa Hukum Tergugat,</p>
                       <div className="signature-space"></div>
-                      <p><u>{advocateName}</u></p>
+                      <p><u>{advocateName || '[Nama Advokat]'}</u></p>
                     </div>
                   </div>
                 )}
