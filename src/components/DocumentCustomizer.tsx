@@ -9,9 +9,7 @@ interface DocumentCustomizerProps {
 export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selectedDocName, onOpenPromo }) => {
   // Document template configurations
   const [templateType, setTemplateType] = useState<string>('surat-kuasa');
-  
   // Form States
-  const [letterheadStyle, setLetterheadStyle] = useState<string>('image-banner');
   const [advocateName, setAdvocateName] = useState<string>('');
   const [lawFirm, setLawFirm] = useState<string>('');
   const [advocateAddress, setAdvocateAddress] = useState<string>('');
@@ -50,20 +48,8 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
   };
 
   // Custom Upload States (SaaS Features)
-  const [customLogo, setCustomLogo] = useState<string | null>(null);
   const [customHeader, setCustomHeader] = useState<string | null>(null);
   const [customFooter, setCustomFooter] = useState<string | null>(null);
-
-  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCustomLogo(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleHeaderUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -123,8 +109,6 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
   };
 
   const handleReset = () => {
-    setLetterheadStyle('image-banner');
-    setCustomLogo(null);
     setCustomHeader(null);
     setCustomFooter(null);
     setAdvocateName('');
@@ -224,95 +208,40 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
               />
             </div>
 
-            <div className="form-group">
-              <label>Gaya Kop Surat (Letterhead)</label>
-              <select 
-                value={letterheadStyle} 
-                onChange={(e) => setLetterheadStyle(e.target.value)}
-                className="input-select"
-              >
-                <option value="with-logo">Kombinasi Logo & Teks</option>
-                <option value="image-banner">Gambar Banner Kop Surat</option>
-                <option value="text-only">Hanya Teks Standar</option>
-              </select>
+            {/* File Uploaders for custom headers & footers (SaaS features) */}
+            <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s' }}>
+              <label className="file-upload-label">
+                <Upload size={14} /> Upload Header kop surat kantor pengacara anda (.png/.jpg)
+              </label>
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={handleHeaderUpload} 
+                className="input-file"
+              />
+              {customHeader && (
+                <button onClick={() => setCustomHeader(null)} className="btn-remove-file">
+                  Hapus Header Kustom
+                </button>
+              )}
             </div>
 
-            {/* File Uploaders for custom headers & footers (SaaS features) */}
-            {letterheadStyle === 'with-logo' && (
-              <>
-                <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s' }}>
-                  <label className="file-upload-label">
-                    <Upload size={14} /> Upload Logo kop surat kantor pengacara anda (.png/.jpg)
-                  </label>
-                  <input 
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleLogoUpload} 
-                    className="input-file"
-                  />
-                  {customLogo && (
-                    <button onClick={() => setCustomLogo(null)} className="btn-remove-file">
-                      Hapus Logo Kustom
-                    </button>
-                  )}
-                </div>
-
-                <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s', marginTop: '12px' }}>
-                  <label className="file-upload-label">
-                    <Upload size={14} /> Upload Footer kop surat kantor pengacara anda (.png/.jpg)
-                  </label>
-                  <input 
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleFooterUpload} 
-                    className="input-file"
-                  />
-                  {customFooter && (
-                    <button onClick={() => setCustomFooter(null)} className="btn-remove-file">
-                      Hapus Footer Kustom
-                    </button>
-                  )}
-                </div>
-              </>
-            )}
-
-            {letterheadStyle === 'image-banner' && (
-              <>
-                <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s' }}>
-                  <label className="file-upload-label">
-                    <Upload size={14} /> Upload Header kop surat kantor pengacara anda (.png/.jpg)
-                  </label>
-                  <input 
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleHeaderUpload} 
-                    className="input-file"
-                  />
-                  {customHeader && (
-                    <button onClick={() => setCustomHeader(null)} className="btn-remove-file">
-                      Hapus Header Kustom
-                    </button>
-                  )}
-                </div>
-
-                <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s', marginTop: '12px' }}>
-                  <label className="file-upload-label">
-                    <Upload size={14} /> Upload Footer kop surat kantor pengacara anda (.png/.jpg)
-                  </label>
-                  <input 
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleFooterUpload} 
-                    className="input-file"
-                  />
-                  {customFooter && (
-                    <button onClick={() => setCustomFooter(null)} className="btn-remove-file">
-                      Hapus Footer Kustom
-                    </button>
-                  )}
-                </div>
-              </>
-            )}
+            <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s', marginTop: '12px' }}>
+              <label className="file-upload-label">
+                <Upload size={14} /> Upload Footer kop surat kantor pengacara anda (.png/.jpg)
+              </label>
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={handleFooterUpload} 
+                className="input-file"
+              />
+              {customFooter && (
+                <button onClick={() => setCustomFooter(null)} className="btn-remove-file">
+                  Hapus Footer Kustom
+                </button>
+              )}
+            </div>
 
             {/* Client/Opponent Details */}
             <h4 className="group-title"><User size={16} /> Para Pihak & Detail Perkara</h4>
@@ -464,20 +393,9 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                 )}
                 
                 {/* Law Firm Header Letterhead */}
-                {letterheadStyle === 'image-banner' ? (
+                {customHeader ? (
                   <div className="letterhead-image-banner">
-                    <img src={customHeader || "/Header.png"} className="firm-header-img" alt="Kop Surat Banner" />
-                  </div>
-                ) : letterheadStyle === 'with-logo' ? (
-                  <div className="letterhead">
-                    <div className="letterhead-with-logo">
-                      <img src={customLogo || "/logo.png"} className="firm-logo-img" alt="Logo Law Firm" />
-                      <div className="firm-details">
-                        <h2 className="firm-name">{(lawFirm || '[Nama Kantor Hukum / Law Office]').toUpperCase()}</h2>
-                        <p className="firm-address">{advocateAddress || '[Alamat Kantor Hukum / Law Office]'}</p>
-                      </div>
-                    </div>
-                    <div className="double-line"></div>
+                    <img src={customHeader} className="firm-header-img" alt="Kop Surat Banner" />
                   </div>
                 ) : (
                   <div className="letterhead">
