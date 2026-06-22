@@ -20,6 +20,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
   const [datePlace, setDatePlace] = useState<string>('');
   const [caseValue, setCaseValue] = useState<string>('');
   const [demandAction, setDemandAction] = useState<string>('');
+  const [opponentType, setOpponentType] = useState<string>('perusahaan');
 
   // DRM Licensing States
   const [isPremium, setIsPremium] = useState<boolean>(() => {
@@ -122,6 +123,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
     setClientAddress('');
     setOpponentName('');
     setOpponentAddress('');
+    setOpponentType('perusahaan');
     setCaseValue('');
     setDemandAction('');
     setDatePlace('');
@@ -271,6 +273,20 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   className="input-text"
                   placeholder="contoh: PT. Maju Mundur Sejahtera"
                 />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>Jenis Pihak Lawan</label>
+                <select 
+                  value={opponentType} 
+                  onChange={(e) => setOpponentType(e.target.value)}
+                  className="input-select"
+                >
+                  <option value="perusahaan">Perusahaan / Instansi (Pimpinan / Direksi)</option>
+                  <option value="perorangan">Perorangan / Pribadi (Bapak / Ibu / Sdr)</option>
+                </select>
               </div>
             </div>
 
@@ -487,18 +503,18 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
 
                     <div className="recipient-block">
                       <p>Kepada Yth.</p>
-                      <p><strong>Pimpinan / Direksi {opponentName || '[Nama Pihak Lawan]'}</strong></p>
+                      <p><strong>{opponentType === 'perorangan' ? 'Bapak/Ibu/Sdr. ' : 'Pimpinan / Direksi '}{opponentName || '[Nama Pihak Lawan]'}</strong></p>
                       <p>Di {opponentAddress || '[Alamat Pihak Lawan]'}</p>
                     </div>
 
                     <p>Dengan hormat,</p>
                     <p className="text-justify indent">
-                      Untuk dan atas nama klien kami, <strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong>, berdasarkan Surat Kuasa Khusus tertanggal {datePlace || '[Kota, Tanggal Dokumen]'}, dengan ini menyampaikan Teguran Hukum (Somasi) kepada Saudara/Perusahaan Saudara atas permasalahan hukum sebagai berikut:
+                      Untuk dan atas nama klien kami, <strong>{clientName || '[Nama Klien / Pemberi Kuasa]'}</strong>, berdasarkan Surat Kuasa Khusus tertanggal {datePlace || '[Kota, Tanggal Dokumen]'}, dengan ini menyampaikan Teguran Hukum (Somasi) kepada {opponentType === 'perorangan' ? 'Saudara' : 'Saudara/Perusahaan Saudara'} atas permasalahan hukum sebagai berikut:
                     </p>
 
                     <ol className="doc-list">
                       <li className="text-justify">
-                        Bahwa Klien kami dan Perusahaan Saudara terikat perjanjian kerja sama proyek pembangunan ruko, di mana Saudara berkewajiban melakukan pembayaran secara berkala sesuai kemajuan proyek.
+                        Bahwa Klien kami dan {opponentType === 'perorangan' ? 'Saudara' : 'Perusahaan Saudara'} terikat perjanjian kerja sama proyek pembangunan ruko, di mana Saudara berkewajiban melakukan pembayaran secara berkala sesuai kemajuan proyek.
                       </li>
                       <li className="text-justify">
                         Bahwa sampai dengan jatuh tempo yang telah ditentukan, Saudara ternyata terbukti belum melaksanakan kewajiban pembayaran sisa proyek sebesar <strong>Rp{caseValue || '[Nilai Kerugian]'},- (Bisa dikonfigurasi pada form)</strong>.
