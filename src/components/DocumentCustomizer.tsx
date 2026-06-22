@@ -52,6 +52,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
   // Custom Upload States (SaaS Features)
   const [customLogo, setCustomLogo] = useState<string | null>(null);
   const [customHeader, setCustomHeader] = useState<string | null>(null);
+  const [customFooter, setCustomFooter] = useState<string | null>(null);
 
   const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -70,6 +71,17 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
       const reader = new FileReader();
       reader.onloadend = () => {
         setCustomHeader(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleFooterUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCustomFooter(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
@@ -114,6 +126,7 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
     setLetterheadStyle('image-banner');
     setCustomLogo(null);
     setCustomHeader(null);
+    setCustomFooter(null);
     setAdvocateName('Ahmad Fauzi, S.H., M.H.');
     setLawFirm('Fauzi & Partners Law Office');
     setAdvocateAddress('Sudirman Central Business District (SCBD) Lot 28, Jakarta Selatan');
@@ -215,49 +228,87 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                 onChange={(e) => setLetterheadStyle(e.target.value)}
                 className="input-select"
               >
-                <option value="with-logo">Kombinasi Logo & Teks (logo.png)</option>
-                <option value="image-banner">Banner Kop Surat Gambar (Header.png)</option>
+                <option value="with-logo">Kombinasi Logo & Teks</option>
+                <option value="image-banner">Gambar Banner Kop Surat</option>
                 <option value="text-only">Hanya Teks Standar</option>
               </select>
             </div>
 
-            {/* File Uploaders for custom headers (SaaS features) */}
+            {/* File Uploaders for custom headers & footers (SaaS features) */}
             {letterheadStyle === 'with-logo' && (
-              <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s' }}>
-                <label className="file-upload-label">
-                  <Upload size={14} /> Unggah Logo Kustom (.png/.jpg)
-                </label>
-                <input 
-                  type="file" 
-                  accept="image/*" 
-                  onChange={handleLogoUpload} 
-                  className="input-file"
-                />
-                {customLogo && (
-                  <button onClick={() => setCustomLogo(null)} className="btn-remove-file">
-                    Hapus Logo Kustom
-                  </button>
-                )}
-              </div>
+              <>
+                <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s' }}>
+                  <label className="file-upload-label">
+                    <Upload size={14} /> Upload Logo kop surat kantor pengacara anda (.png/.jpg)
+                  </label>
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleLogoUpload} 
+                    className="input-file"
+                  />
+                  {customLogo && (
+                    <button onClick={() => setCustomLogo(null)} className="btn-remove-file">
+                      Hapus Logo Kustom
+                    </button>
+                  )}
+                </div>
+
+                <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s', marginTop: '12px' }}>
+                  <label className="file-upload-label">
+                    <Upload size={14} /> Upload Footer kop surat kantor pengacara anda (.png/.jpg)
+                  </label>
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleFooterUpload} 
+                    className="input-file"
+                  />
+                  {customFooter && (
+                    <button onClick={() => setCustomFooter(null)} className="btn-remove-file">
+                      Hapus Footer Kustom
+                    </button>
+                  )}
+                </div>
+              </>
             )}
 
             {letterheadStyle === 'image-banner' && (
-              <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s' }}>
-                <label className="file-upload-label">
-                  <Upload size={14} /> Unggah Banner Kop Kustom (.png/.jpg)
-                </label>
-                <input 
-                  type="file" 
-                  accept="image/*" 
-                  onChange={handleHeaderUpload} 
-                  className="input-file"
-                />
-                {customHeader && (
-                  <button onClick={() => setCustomHeader(null)} className="btn-remove-file">
-                    Hapus Banner Kustom
-                  </button>
-                )}
-              </div>
+              <>
+                <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s' }}>
+                  <label className="file-upload-label">
+                    <Upload size={14} /> Upload Header kop surat kantor pengacara anda (.png/.jpg)
+                  </label>
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleHeaderUpload} 
+                    className="input-file"
+                  />
+                  {customHeader && (
+                    <button onClick={() => setCustomHeader(null)} className="btn-remove-file">
+                      Hapus Header Kustom
+                    </button>
+                  )}
+                </div>
+
+                <div className="form-group upload-group animate-fade-in" style={{ animationDuration: '0.3s', marginTop: '12px' }}>
+                  <label className="file-upload-label">
+                    <Upload size={14} /> Upload Footer kop surat kantor pengacara anda (.png/.jpg)
+                  </label>
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleFooterUpload} 
+                    className="input-file"
+                  />
+                  {customFooter && (
+                    <button onClick={() => setCustomFooter(null)} className="btn-remove-file">
+                      Hapus Footer Kustom
+                    </button>
+                  )}
+                </div>
+              </>
             )}
 
             {/* Client/Opponent Details */}
@@ -630,6 +681,13 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
                   </div>
                 )}
 
+                {/* Law Firm Footer Kop Surat */}
+                {customFooter && (
+                  <div className="paper-footer-image">
+                    <img src={customFooter} className="firm-footer-img" alt="Kop Surat Footer" />
+                  </div>
+                )}
+
               </div>
             </div>
           </div>
@@ -943,12 +1001,12 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
           background: #fafaf9; /* A bit creamy white like legal papers */
           color: #1c1917 !important;
           box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-          padding: 40px 40px;
+          padding: 40px 40px 110px 40px; /* added 110px bottom padding to prevent overlay with footer */
           font-family: 'Times New Roman', Times, serif !important;
           font-size: 11pt;
           line-height: 1.6;
           border-radius: 4px;
-          min-height: 800px;
+          min-height: 850px;
         }
 
         /* Force legal paper colors and fonts to be print-authentic (black ink on white paper) */
@@ -1302,6 +1360,24 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
           transform: translateY(-1px);
         }
 
+        .paper-footer-image {
+          position: absolute;
+          bottom: 20px;
+          left: 40px;
+          right: 40px;
+          display: flex;
+          justify-content: center;
+          border-top: 1px solid #e2e8f0;
+          padding-top: 8px;
+        }
+
+        .firm-footer-img {
+          width: 100%;
+          height: auto;
+          max-height: 60px;
+          object-fit: contain;
+        }
+
         .watermark-overlay {
           position: absolute;
           top: 50%;
@@ -1369,12 +1445,22 @@ export const DocumentCustomizer: React.FC<DocumentCustomizerProps> = ({ selected
 
           .legal-paper {
             box-shadow: none !important;
-            padding: 0 !important;
+            padding: 0 0 110px 0 !important;
             margin: 0 !important;
             background: #fff !important;
             color: #111 !important;
             min-height: auto !important;
             border: none !important;
+            position: relative;
+          }
+
+          .paper-footer-image {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            border-top: 1px solid #111;
+            padding-top: 6px;
           }
 
           body {
