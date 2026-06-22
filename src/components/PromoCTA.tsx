@@ -40,7 +40,7 @@ export const PromoCTA: React.FC = () => {
     if (!name || !whatsapp) return;
     setLoading(true);
     
-    const waNumber = '6281234567890'; // Silakan ganti dengan nomor WhatsApp Admin Anda
+    const waNumber = '62811665212'; // Silakan ganti dengan nomor WhatsApp Admin Anda
     const textMessage = `Halo Admin Lawyer Visioner, saya ingin mengklaim Promo Advokat Master.\n\n*Data Pendaftar:*\n- *Nama:* ${name}\n- *Nomor WhatsApp:* ${whatsapp}\n- *Email:* ${email}`;
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(textMessage)}`;
 
@@ -165,7 +165,7 @@ export const PromoCTA: React.FC = () => {
                   <p>Silakan klik tombol hijau di bawah ini untuk langsung terhubung dengan Admin via WhatsApp guna mengklaim akses paket Anda.</p>
                 </div>
                 <a
-                  href={`https://wa.me/6281234567890?text=Halo%20Admin%20Lawyer%20Visioner,%20saya%20ingin%20mengklaim%20Promo%20Advokat%20Master.%0A%0A*Data%20Pendaftar:*%0A-%20*Nama:*%20${encodeURIComponent(name)}%0A-%20*Nomor%20WhatsApp:*%20${encodeURIComponent(whatsapp)}%0A-%20*Email:*%20${encodeURIComponent(email)}`}
+                  href={`https://wa.me/62811665212?text=Halo%20Admin%20Lawyer%20Visioner,%20saya%20ingin%20mengklaim%20Promo%20Advokat%20Master.%0A%0A*Data%20Pendaftar:*%0A-%20*Nama:*%20${encodeURIComponent(name)}%0A-%20*Nomor%20WhatsApp:*%20${encodeURIComponent(whatsapp)}%0A-%20*Email:*%20${encodeURIComponent(email)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-whatsapp-direct"

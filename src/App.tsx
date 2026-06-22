@@ -97,7 +97,7 @@ function App() {
             <h3>Kontak & Bantuan</h3>
             <ul>
               <li><Mail size={16} /> support@lawyervisioner.com</li>
-              <li><Phone size={16} /> +62 812-3456-7890</li>
+              <li><Phone size={16} /> +62 811-665-212</li>
               <li><Globe size={16} /> www.lawyervisioner.com</li>
             </ul>
           </div>
